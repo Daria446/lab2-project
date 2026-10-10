@@ -1,0 +1,10 @@
+# Скомпилированные файлы
+src/output/
+main
+main.dSYM/
+
+# Системные файлы macOS
+.DS_Store
+
+# Настройки VS Code
+.vscode/
