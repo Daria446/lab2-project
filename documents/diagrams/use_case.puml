@@ -1,0 +1,37 @@
+@startuml
+left to right direction
+
+actor "Сотрудник приюта" as Employee
+actor "Администратор" as Admin
+
+rectangle "Система учёта животных в приюте" {
+    usecase "Вход в систему" as Login
+    usecase "Регистрация животного" as Register
+    usecase "Изменение статуса животного" as Status
+    usecase "Учёт состояния здоровья" as Health
+    usecase "Просмотр списка животных приюта" as List
+    usecase "Поиск животного" as Search
+    usecase "Просмотр информации о животном" as Info
+    usecase "Изменение данных животного" as Edit
+    usecase "Удаление записи о животном" as Delete
+    usecase "Регистрация нового сотрудника" as NewEmployee
+    usecase "Создание отчёта по животным" as Report
+}
+
+Employee -- Login
+Employee -- Register
+Employee -- Status
+Employee -- Search
+
+Admin -- Login
+Admin -- List
+Admin -- Edit
+Admin -- Delete
+Admin -- NewEmployee
+Admin -- Report
+
+Register ..> Health : <<include>>
+List ..> Search : <<include>>
+Search ..> Info : <<include>>
+
+@enduml
