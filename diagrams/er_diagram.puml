@@ -1,0 +1,46 @@
+@startuml
+title ER-диаграмма базы данных приюта животных
+
+hide circle
+skinparam linetype ortho
+
+entity "employees" as employees {
+  * employee_id : INTEGER <<PK>>
+  --
+  full_name : TEXT
+  position : TEXT
+  phone : TEXT
+}
+
+entity "animals" as animals {
+  * animal_id : INTEGER <<PK>>
+  --
+  name : TEXT
+  species : TEXT
+  age : INTEGER
+  health_status : TEXT
+  arrival_date : TEXT
+}
+
+entity "adopters" as adopters {
+  * adopter_id : INTEGER <<PK>>
+  --
+  full_name : TEXT
+  phone : TEXT
+  address : TEXT
+}
+
+entity "adoptions" as adoptions {
+  * adoption_id : INTEGER <<PK>>
+  --
+  animal_id : INTEGER <<FK>>
+  adopter_id : INTEGER <<FK>>
+  employee_id : INTEGER <<FK>>
+  adoption_date : TEXT
+}
+
+animals ||--o| adoptions : пристройство
+adopters ||--o{ adoptions : принимает
+employees ||--o{ adoptions : оформляет
+
+@enduml

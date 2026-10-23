@@ -1,10 +1,14 @@
-# Скомпилированные файлы
+
 src/output/
 main
 main.dSYM/
 
-# Системные файлы macOS
+
 .DS_Store
 
-# Настройки VS Code
+
 .vscode/
+.DS_Store
+.vscode/
+__pycache__/
+*.pyc
