@@ -5,33 +5,59 @@ actor "Сотрудник приюта" as Employee
 actor "Администратор" as Admin
 
 rectangle "Система учёта животных в приюте" {
-    usecase "Вход в систему" as Login
-    usecase "Регистрация животного" as Register
-    usecase "Изменение статуса животного" as Status
-    usecase "Учёт состояния здоровья" as Health
-    usecase "Просмотр списка животных приюта" as List
-    usecase "Поиск животного" as Search
-    usecase "Просмотр информации о животном" as Info
-    usecase "Изменение данных животного" as Edit
-    usecase "Удаление записи о животном" as Delete
-    usecase "Регистрация нового сотрудника" as NewEmployee
-    usecase "Создание отчёта по животным" as Report
+
+    usecase "Вход в систему" as UC1
+    usecase "Регистрация пользователя" as UC2
+
+    usecase "Просмотр списка животных" as UC3
+    usecase "Добавление животного" as UC4
+    usecase "Изменение данных животного" as UC5
+    usecase "Удаление животного" as UC6
+
+    usecase "Просмотр списка владельцев" as UC7
+    usecase "Добавление владельца" as UC8
+    usecase "Изменение данных владельца" as UC9
+    usecase "Удаление владельца" as UC10
+
+    usecase "Просмотр записей о пристройстве" as UC11
+    usecase "Добавление записи о пристройстве" as UC12
+    usecase "Изменение записи о пристройстве" as UC13
+    usecase "Удаление записи о пристройстве" as UC14
+
+    usecase "Управление сотрудниками" as UC15
+    usecase "Просмотр списка сотрудников" as UC16
+    usecase "Добавление сотрудника" as UC17
+    usecase "Изменение данных сотрудника" as UC18
+    usecase "Удаление сотрудника" as UC19
 }
 
-Employee -- Login
-Employee -- Register
-Employee -- Status
-Employee -- Search
+Employee --> UC1
+Employee --> UC2
+Employee --> UC3
+Employee --> UC4
+Employee --> UC5
+Employee --> UC6
+Employee --> UC7
+Employee --> UC11
 
-Admin -- Login
-Admin -- List
-Admin -- Edit
-Admin -- Delete
-Admin -- NewEmployee
-Admin -- Report
+Admin --> UC1
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+Admin --> UC6
+Admin --> UC7
+Admin --> UC8
+Admin --> UC9
+Admin --> UC10
+Admin --> UC11
+Admin --> UC12
+Admin --> UC13
+Admin --> UC14
+Admin --> UC15
 
-Register ..> Health : <<include>>
-List ..> Search : <<include>>
-Search ..> Info : <<include>>
+UC15 .> UC16 : <<include>>
+UC15 .> UC17 : <<include>>
+UC15 .> UC18 : <<include>>
+UC15 .> UC19 : <<include>>
 
 @enduml

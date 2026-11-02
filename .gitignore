@@ -1,14 +1,12 @@
+.DS_Store
+
+.vscode/
+
+__pycache__/
+*.pyc
+
+database/shelter_backup.db
 
 src/output/
 main
 main.dSYM/
-
-
-.DS_Store
-
-
-.vscode/
-.DS_Store
-.vscode/
-__pycache__/
-*.pyc

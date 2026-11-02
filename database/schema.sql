@@ -7,7 +7,9 @@ DROP TABLE IF EXISTS employees;
 
 CREATE TABLE employees (
     employee_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    full_name TEXT NOT NULL,
+    surname TEXT NOT NULL,
+    name TEXT NOT NULL,
+    patronymic TEXT,
     position TEXT NOT NULL,
     phone TEXT
 );
@@ -23,7 +25,9 @@ CREATE TABLE animals (
 
 CREATE TABLE adopters (
     adopter_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    full_name TEXT NOT NULL,
+    surname TEXT NOT NULL,
+    name TEXT NOT NULL,
+    patronymic TEXT,
     phone TEXT NOT NULL UNIQUE,
     address TEXT
 );
@@ -39,10 +43,10 @@ CREATE TABLE adoptions (
     FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
 );
 
-INSERT INTO employees (full_name, position, phone) VALUES
-('Анна Иванова', 'Администратор', '+70000000001'),
-('Иван Петров', 'Ветеринар', '+70000000002'),
-('Мария Смирнова', 'Сотрудник приюта', '+70000000003');
+INSERT INTO employees (surname, name, patronymic, position, phone) VALUES
+('Иванова', 'Анна', 'Сергеевна', 'Администратор', '+70000000001'),
+('Петров', 'Иван', 'Александрович', 'Ветеринар', '+70000000002'),
+('Смирнова', 'Мария', 'Игоревна', 'Сотрудник приюта', '+70000000003');
 
 INSERT INTO animals (name, species, age, health_status, arrival_date) VALUES
 ('Барсик', 'Кошка', 2, 'Здоров', '2026-10-01'),
@@ -50,11 +54,18 @@ INSERT INTO animals (name, species, age, health_status, arrival_date) VALUES
 ('Мурка', 'Кошка', 1, 'Здорова', '2026-10-05'),
 ('Дружок', 'Собака', 3, 'Здоров', '2026-10-08');
 
-INSERT INTO adopters (full_name, phone, address) VALUES
-('Елена Соколова', '+70000000011', 'Нижний Новгород'),
-('Дмитрий Козлов', '+70000000012', 'Нижний Новгород'),
-('Ольга Васильева', '+70000000013', 'Кстово');
+INSERT INTO adopters (surname, name, patronymic, phone, address) VALUES
+('Соколова', 'Елена', 'Александровна', '+70000000011', 'Нижний Новгород'),
+('Козлов', 'Дмитрий', 'Сергеевич', '+70000000012', 'Нижний Новгород'),
+('Васильева', 'Ольга', 'Игоревна', '+70000000013', 'Кстово');
 
 INSERT INTO adoptions (animal_id, adopter_id, employee_id, adoption_date) VALUES
 (1, 1, 1, '2026-10-10'),
 (3, 2, 3, '2026-10-12');
+
+CREATE TABLE IF NOT EXISTS users (
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    login TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    role TEXT NOT NULL
+);

@@ -7,7 +7,9 @@ skinparam linetype ortho
 entity "employees" as employees {
   * employee_id : INTEGER <<PK>>
   --
-  full_name : TEXT
+  surname : TEXT
+  name : TEXT
+  patronymic : TEXT
   position : TEXT
   phone : TEXT
 }
@@ -25,7 +27,9 @@ entity "animals" as animals {
 entity "adopters" as adopters {
   * adopter_id : INTEGER <<PK>>
   --
-  full_name : TEXT
+  surname : TEXT
+  name : TEXT
+  patronymic : TEXT
   phone : TEXT
   address : TEXT
 }
@@ -37,6 +41,14 @@ entity "adoptions" as adoptions {
   adopter_id : INTEGER <<FK>>
   employee_id : INTEGER <<FK>>
   adoption_date : TEXT
+}
+
+entity "users" as users {
+  * user_id : INTEGER <<PK>>
+  --
+  login : TEXT
+  password : TEXT
+  role : TEXT
 }
 
 animals ||--o| adoptions : пристройство
