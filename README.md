@@ -9,6 +9,7 @@
 ## 2. Основные возможности
 
 В системе предусмотрены две роли пользователей:
+
 ### Сотрудник приюта
 
 - Вход в систему и регистрация.
@@ -36,27 +37,32 @@
 
 ## 4. Структура проекта
 
-```text
-lab2-project/
-├── database/
-│   ├── schema.sql
-│   └── shelter.db
-├── diagrams/
-│   ├── er_diagram.puml
-│   └── er_diagram.png
-├── documents/
-│   └── diagrams/
-│       ├── use_case.puml
-│       └── use_case.png
-├── src/
-│   ├── main.py
-│   ├── create_admin.py
-│   ├── init_users.py
-│   ├── models/
-│   ├── repositories/
-│   └── services/
-├── .gitignore
-└── README.md```
+    lab2-project/
+    ├── database/
+    │   ├── schema.sql
+    │   └── shelter.db
+    ├── diagrams/
+    │   ├── er_diagram.puml
+    │   └── er_diagram.png
+    ├── documents/
+    │   └── diagrams/
+    │       ├── use_case.puml
+    │       └── use_case.png
+    └── src/
+        ├── main.py
+        ├── create_admin.py
+        ├── init_users.py
+        ├── models/
+        ├── repositories/
+        └── services/
+
+Папка `database` содержит файлы базы данных и SQL-схему.
+
+Папка `diagrams` содержит ER-диаграмму.
+
+Папка `documents` содержит диаграмму вариантов использования.
+
+Папка `src` содержит исходный код программы, модели, репозитории и сервисы.
 
 ## 5. Структура базы данных
 
@@ -64,11 +70,11 @@ lab2-project/
 
 | Название таблицы | Назначение |
 |---|---|
-| employees | Хранение информации о сотрудниках |
-| animals | Хранение информации о животных |
-| adopters | Хранение информации о владельцах |
-| adoptions | Хранение записей о пристройстве |
-| users | Хранение учётных записей пользователей |
+| employees | Информация о сотрудниках |
+| animals | Информация о животных |
+| adopters | Данные владельцев |
+| adoptions | Записи о пристройстве |
+| users | Учётные записи пользователей |
 
 Для связи таблиц используются первичные и внешние ключи. Фамилия, имя и отчество сотрудников и владельцев хранятся в отдельных полях.
 
@@ -76,8 +82,7 @@ lab2-project/
 
 Для запуска программы необходимо открыть проект в VS Code и выполнить в терминале из корневой папки проекта команду:
 
-```bash
-python3 src/main.py
+    python3 src/main.py
 
 ## 7. Диаграммы проекта
 
