@@ -1,5 +1,6 @@
 from repositories.database import get_connection
 from models.animal import Animal
+import sqlite3
 
 
 class AnimalRepository:
@@ -93,11 +94,16 @@ class AnimalRepository:
         connection.close()
     def delete(self, animal_id):
         connection = get_connection()
-
-        connection.execute(
+        try:
+            connection.execute(
             "DELETE FROM animals WHERE animal_id = ?",
             (animal_id,)
-        )
+            )
 
-        connection.commit()
-        connection.close()
+            connection.commit()
+
+        except sqlite3.IntegrityError:
+            connection.rollback()
+            raise ValueError("Нельзя удалить животное, так как оно уже пристроено")
+        finally:
+            connection.close()

@@ -147,9 +147,14 @@ def animal_menu():
         elif choice == "4":
             try:
                 animal_id = int(input("Введите ID животного: "))
-                service.delete_animal(animal_id)
+                
+                try:
+                    service.delete_animal(animal_id)
+                    print("Животное успешно удалено")
+                except ValueError as error:
+                    print(error)
                 print("Животное удалено!")
-
+            
             except ValueError as error:
                 print(error)
 
