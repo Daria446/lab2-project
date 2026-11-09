@@ -98,40 +98,38 @@ def animal_menu():
                 )
 
         elif choice == "2":
-            name = input("Имя животного: ")
-            species = input("Вид животного: ")
-            age_text = input("Возраст: ")
-            health = input("Состояние здоровья: ")
-            date = input("Дата поступления: ")
-
             try:
+                name = input("Имя животного: ").strip()
+                species = input("Вид животного: ").strip()
+                age_text = input("Возраст: ").strip()
+                health = input("Состояние здоровья: ").strip()
+                date = input("Дата поступления: ").strip()
+
                 age = int(age_text) if age_text else None
 
-                animal = Animal(
-                    0, name, species, age, health, date
-                )
-
+                animal = Animal(0, name, species, age, health, date)
                 service.add_animal(animal)
+
                 print("Животное добавлено!")
 
             except ValueError as error:
                 print(error)
 
         elif choice == "3":
-            animal_id = int(input("Введите ID животного: "))
-            old_animal = service.repository.get_by_id(animal_id)
-
-            if old_animal is None:
-                print("Животное не найдено")
-                continue
-
-            name = input("Новое имя: ")
-            species = input("Новый вид: ")
-            age_text = input("Новый возраст: ")
-            health = input("Новое состояние здоровья: ")
-            date = input("Новая дата поступления: ")
-
             try:
+                animal_id = read_int("Введите ID животного: ")
+                old_animal = service.repository.get_by_id(animal_id)
+
+                if old_animal is None:
+                    print("Животное не найдено")
+                    continue
+
+                name = input("Новое имя: ").strip()
+                species = input("Новый вид: ").strip()
+                age_text = input("Новый возраст: ").strip()
+                health = input("Новое состояние здоровья: ").strip()
+                date = input("Новая дата поступления: ").strip()
+
                 age = int(age_text) if age_text else None
 
                 animal = Animal(
@@ -146,15 +144,10 @@ def animal_menu():
 
         elif choice == "4":
             try:
-                animal_id = int(input("Введите ID животного: "))
-                
-                try:
-                    service.delete_animal(animal_id)
-                    print("Животное успешно удалено")
-                except ValueError as error:
-                    print(error)
-                print("Животное удалено!")
-            
+                animal_id = read_int("Введите ID животного: ")
+                service.delete_animal(animal_id)
+                print("Животное успешно удалено!")
+
             except ValueError as error:
                 print(error)
 
@@ -209,7 +202,7 @@ def adopter_menu():
 
         elif choice == "3":
             try:
-                adopter_id = int(input("Введите ID владельца: "))
+                adopter_id = read_int("Введите ID владельца: ")
                 old_adopter = service.repository.get_by_id(adopter_id)
 
                 if old_adopter is None:
@@ -235,7 +228,7 @@ def adopter_menu():
 
         elif choice == "4":
             try:
-                adopter_id = int(input("Введите ID владельца: "))
+                adopter_id = read_int("Введите ID владельца: ")
                 service.delete_adopter(adopter_id)
                 print("Владелец удалён!")
             except ValueError as error:
@@ -248,16 +241,17 @@ def adopter_menu():
             print("Неверный пункт меню")
 
 def read_int(prompt):
-    value = input(prompt).strip()
+    while True:
+        value = input(prompt).strip()
 
-    if not value:
-        raise ValueError("Это поле обязательно для заполнения")
+        if not value:
+            print("Это поле обязательно для заполнения")
+            continue
 
-    try:
-        return int(value)
-    except ValueError:
-        raise ValueError("Введите целое число")
-
+        try:
+            return int(value)
+        except ValueError:
+            print("Введите целое число")
 
 def adoption_menu():
     service = AdoptionService()
