@@ -16,7 +16,12 @@ class EmployeeService:
         if not employee.position:
             raise ValueError("Укажите должность")
 
+        if not employee.phone.isdigit():
+            raise ValueError("Номер телефона должен содержать только цифры")
+
         self.repository.create(employee)
+
+
 
     def update_employee(self, employee):
         old_employee = self.repository.get_by_id(employee.employee_id)
@@ -26,7 +31,9 @@ class EmployeeService:
 
         if not employee.surname or not employee.name:
             raise ValueError("Введите фамилию и имя")
-
+        if not employee.phone.isdigit():
+            raise ValueError("Номер телефона должен содержать только цифры")
+        
         self.repository.update(employee)
 
     def delete_employee(self, employee_id):
