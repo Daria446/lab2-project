@@ -66,29 +66,39 @@ for animal in data:
     })
 
 with open(OUT_DIR / "data.csv", "w", encoding="utf-8", newline="") as file:
-    writer = csv.DictWriter(file, fieldnames=csv_data[0].keys())
+    fieldnames = list(csv_data[0].keys()) if csv_data else [
+        "animal_id", "name", "species", "age",
+        "adoption_id", "adoption_date"
+    ]
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
     writer.writeheader()
     writer.writerows(csv_data)
+
+
+def add_xml_element(parent, key, value):
+    element = ET.SubElement(parent, key)
+
+    if isinstance(value, dict):
+        for child_key, child_value in value.items():
+            add_xml_element(element, child_key, child_value)
+
+    elif value is not None:
+        element.text = str(value)
+
 
 root = ET.Element("animals")
 
 for animal in data:
     animal_element = ET.SubElement(root, "animal")
 
-    for key in ["animal_id", "name", "species", "age"]:
-        ET.SubElement(animal_element, key).text = str(animal[key])
-
-    adoption_element = ET.SubElement(animal_element, "adoption")
-
-    if animal["adoption"] is not None:
-        for key, value in animal["adoption"].items():
-            ET.SubElement(adoption_element, key).text = str(value)
+    for key, value in animal.items():
+        add_xml_element(animal_element, key, value)
 
 tree = ET.ElementTree(root)
 ET.indent(tree, space="    ")
 tree.write(OUT_DIR / "data.xml", encoding="utf-8", xml_declaration=True)
 
 with open(OUT_DIR / "data.yaml", "w", encoding="utf-8") as file:
-    yaml.dump(data, file, allow_unicode=True, sort_keys=False)
+    yaml.safe_dump(data, file, allow_unicode=True, sort_keys=False)
 
 print("Все четыре файла успешно созданы!")
