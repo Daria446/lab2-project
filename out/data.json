@@ -1,0 +1,43 @@
+[
+    {
+        "animal_id": 1,
+        "name": "Барсик",
+        "species": "Кошка",
+        "age": 3,
+        "adoption": {
+            "adoption_id": 1,
+            "adoption_date": "2026-10-10"
+        }
+    },
+    {
+        "animal_id": 2,
+        "name": "Рекс",
+        "species": "Собака",
+        "age": 4,
+        "adoption": null
+    },
+    {
+        "animal_id": 3,
+        "name": "Мурка",
+        "species": "Кошка",
+        "age": 1,
+        "adoption": {
+            "adoption_id": 2,
+            "adoption_date": "2026-10-12"
+        }
+    },
+    {
+        "animal_id": 4,
+        "name": "Дружок",
+        "species": "Собака",
+        "age": 3,
+        "adoption": null
+    },
+    {
+        "animal_id": 7,
+        "name": "Брасик",
+        "species": "кот",
+        "age": 3,
+        "adoption": null
+    }
+]
